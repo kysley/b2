@@ -1,5 +1,5 @@
 {
-  "name": "turborepo-basic-shared",
+  "name": "b2-bracket-booster",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
@@ -23,8 +23,7 @@
           "^build"
         ],
         "outputs": [
-          "dist/**",
-          ".next/**"
+          "dist/**"
         ]
       },
       "lint": {
