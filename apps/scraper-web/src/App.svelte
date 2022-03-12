@@ -1,6 +1,11 @@
 <script lang="ts">
   import "./global.css";
 
+  export const apiUrl =
+    import.meta.env.MODE === "production"
+      ? "https://api.e8y.fun/b2"
+      : "http://localhost:3600";
+
   let pairs;
   let loading;
 
@@ -17,7 +22,7 @@
 
   async function getColours(theme: string) {
     loading = true;
-    const res = await fetch(`http://localhost:3600/?search=${theme}`);
+    const res = await fetch(`${apiUrl}/?search=${theme}`);
     const data = await res.json();
     loading = false;
     pairs = data;
@@ -25,7 +30,7 @@
 </script>
 
 <header>
-  <h1>bracket buddy</h1>
+  <h1>b2</h1>
 </header>
 <main>
   <section>
@@ -106,8 +111,8 @@
 
   h1 {
     color: white;
-    text-transform: uppercase;
     font-size: 1.8rem;
+    font-style: italic;
     font-weight: 700;
     max-width: 14rem;
     padding: 0;
