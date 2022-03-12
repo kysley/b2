@@ -70,7 +70,7 @@ const fastify = Fastify({ trustProxy: true });
 fastify.register(FastifyCors, {
   origin: [
     "http://localhost:8800",
-    "https://bpc.e8y.fun",
+    "https://b2.e8y.fun",
     "http://localhost:3000",
   ],
 });
