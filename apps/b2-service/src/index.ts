@@ -110,7 +110,7 @@ fastify.get("/", async (req: PeerManagerGetRequest, res) => {
 
 const start = async () => {
   try {
-    const browser = await Puppeteer.launch();
+    const browser = await Puppeteer.launch({ headless: true });
     page = await browser.newPage();
     await fastify.listen(3600);
   } catch (e) {
