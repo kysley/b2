@@ -97,16 +97,16 @@ fastify.get("/", async (req: PeerManagerGetRequest, res) => {
   res.send(resp);
 });
 
-fastify.get("/health", async () => {
-  // Random search that only has one theme
-  // this is a super fragile health test tbfh
-  const resp = await crawlTheme(encodeURI("Taarú Teranga"));
+// fastify.get("/health", async () => {
+//   // Random search that only has one theme
+//   // this is a super fragile health test tbfh
+//   const resp = await crawlTheme(encodeURI("Taarú Teranga"));
 
-  if (resp["#000000"] !== 32) {
-    return false;
-  }
-  return true;
-});
+//   if (resp["#000000"] !== 32) {
+//     return false;
+//   }
+//   return true;
+// });
 
 const start = async () => {
   try {
