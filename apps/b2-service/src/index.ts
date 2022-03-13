@@ -1,7 +1,10 @@
+import dotenv from "dotenv";
 import Puppeteer from "puppeteer";
 import * as cheerio from "cheerio";
 import Fastify, { FastifyRequest } from "fastify";
 import FastifyCors from "fastify-cors";
+
+dotenv.config({ path: `${process.cwd()}/../../.env` });
 
 const cache = new Map();
 let page: Puppeteer.Page;
@@ -95,6 +98,8 @@ fastify.get("/", async (req: PeerManagerGetRequest, res) => {
   cache.set(uri, resp);
 
   res.send(resp);
+
+  page.close();
 });
 
 // fastify.get("/health", async () => {
@@ -112,7 +117,7 @@ const start = async () => {
   try {
     const browser = await Puppeteer.launch({ headless: true });
     page = await browser.newPage();
-    await fastify.listen(3600);
+    await fastify.listen(process.env.SERVICE_PORT || 3600);
   } catch (e) {
     console.error(e);
     process.exit(1);

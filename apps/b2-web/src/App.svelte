@@ -1,10 +1,14 @@
 <script lang="ts">
   import "./global.css";
 
+  const DEV_PORT = import.meta.env.VITE_SERVICE_PORT
+    ? import.meta.env.VITE_SERVICE_PORT
+    : 3600;
+
   export const apiUrl =
     import.meta.env.MODE === "production"
       ? "https://api.e8y.fun/b2"
-      : "http://localhost:3600";
+      : `http://localhost:${DEV_PORT}`;
 
   let pairs;
   let loading;
