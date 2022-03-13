@@ -26,7 +26,7 @@
 
   async function getColours(theme: string) {
     loading = true;
-    const res = await fetch(`${apiUrl}/?search=${theme}`);
+    const res = await fetch(`${apiUrl}?search=${theme}`);
     const data = await res.json();
     loading = false;
     pairs = data;
