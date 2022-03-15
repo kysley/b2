@@ -99,7 +99,7 @@ fastify.get("/", async (req: PeerManagerGetRequest, res) => {
 
   res.send(resp);
 
-  page.close();
+  // page.close();
 });
 
 // fastify.get("/health", async () => {
