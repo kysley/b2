@@ -12,6 +12,8 @@
 
 {#if pairs}
   {#each pairs as pair, idx}
-    <p>{`"editorBracketHighlight.foreground${idx}": "${pair}",`}</p>
+    {#if idx <= 5}
+      <p>{`"editorBracketHighlight.foreground${idx + 1}": "${pair}",`}</p>
+    {/if}
   {/each}
 {/if}
