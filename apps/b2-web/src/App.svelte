@@ -30,7 +30,7 @@
 
   async function getColours(theme: string) {
     loading = true;
-    const res = await fetch(`${apiUrl}?search=${theme}`);
+    const res = await fetch(`${apiUrl}?url=${theme}`);
     const data = await res.json();
     loading = false;
     pairs = data;
@@ -50,17 +50,11 @@
         Find your theme on <a href="https://vscodethemes.com">vscodethemes</a> and
         "view extension"
       </li>
-      <li>
-        Copy everything after the e/ in the url <code
-          >https://vscodethemes.com/<u>e/</u><span
-            >dracula-theme.theme-dracula</span
-          ></code
-        >
-      </li>
+      <li>Copy the entire url</li>
       <li>Paste it below!</li>
     </ol>
     <form on:submit|preventDefault={submit}>
-      <input name="theme" type="text" placeholder="theme name" />
+      <input name="theme" type="text" placeholder="theme url" />
       <button type="submit">get bracket colours</button>
     </form>
   </section>
@@ -123,7 +117,7 @@
 
   .grid {
     display: grid;
-    grid-template-columns: 2fr 2fr 3fr;
+    grid-template-columns: auto 200px 1fr;
     gap: 5em;
   }
 
@@ -138,6 +132,7 @@
     margin: 0.1rem;
     border-radius: 3px;
     overflow: hidden;
+    white-space: pre-wrap;
   }
 
   code span {

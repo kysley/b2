@@ -10,7 +10,7 @@ const cache = new Map();
 let page: Puppeteer.Page;
 
 async function crawlTheme(uri: string) {
-  await page.goto(`https://vscodethemes.com/e/${uri}`);
+  await page.goto(uri);
 
   const content = await page.content();
 
@@ -80,22 +80,20 @@ fastify.register(FastifyCors, {
 
 type PeerManagerGetRequest = FastifyRequest<{
   Querystring: {
-    search: string;
+    url: string;
   };
 }>;
 fastify.get("/", async (req: PeerManagerGetRequest, res) => {
-  const { search } = req.query;
-  if (!search) return res.status(404).send();
+  const { url } = req.query;
+  if (!url) return res.status(404).send();
 
-  const uri = encodeURI(search.toLowerCase());
-
-  if (cache.has(uri)) {
-    res.send(cache.get(uri));
+  if (cache.has(url)) {
+    res.send(cache.get(url));
     return;
   }
 
-  const resp = await crawlTheme(uri);
-  cache.set(uri, resp);
+  const resp = await crawlTheme(url);
+  cache.set(url, resp);
 
   res.send(resp);
 

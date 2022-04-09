@@ -13,7 +13,7 @@
 {#if pairs}
   {#each pairs as pair, idx}
     {#if idx <= 5}
-      <p>{`"editorBracketHighlight.foreground${idx + 1}": "${pair}",`}</p>
+      {`"editorBracketHighlight.foreground${idx + 1}": "${pair}", \n`}
     {/if}
   {/each}
 {/if}
